@@ -12,7 +12,7 @@
             
                 <div class="panel-body">
                     {!! Form::model($estudiante, ['route' => ['estudiantes.update',$estudiante->id], 'method' => 'PUT']) !!}
-                        @include('estudiantes.form')
+                        @include('estudiantes.form2')
                     {!! Form::close() !!}
                 </div>
             </div>
