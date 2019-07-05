@@ -15,18 +15,19 @@ class CreateTrabajosTable extends Migration
     {
         Schema::create('trabajos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_actividad')->unsigned()->nullable();
+            $table->integer('id_actividad')->unsigned();
             $table->string('nombre_trabajo',64);
             $table->string('org_nombre',64)->nullable();
             $table->string('tutor_nombre',64)->nullable();
             $table->integer('numero_registro')->nullable();
+            $table->double('nota')->unsigned()->nullable();
             $table->date('fecha_inicio');
-            $table->date('fecha_termino');
+            $table->date('fecha_examen')->nullable();
             $table->enum('estado',['INGRESADA','ACEPTADA','FINALIZADA','ANULADA'])->default('INGRESADA');
             
             $table->timestamps();
 
-            //$table->foreign('id_actividad')->references('id')->on('actividads');
+            $table->foreign('id_actividad')->references('id')->on('actividads');
         });
     }
 

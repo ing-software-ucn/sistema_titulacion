@@ -25,11 +25,19 @@ class ActividadStoreRequest extends FormRequest
     {
         return [
             
-            'nombre_actividad' => 'required|min:2|max:255',
+            'nombre_actividad' => 'required|min:2|max:255|regex:/^[a-zA-Z ]+$/',
             'estudiantes_max'=> 'required', 
             'duracion_semestres'=> 'required', 
             'org_externa'=> 'required',
             
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nombre_actividad.regex' => 'El nombre no puede contener numeros o simbolos raros',
+            'nombre_actividad.required' => 'El nombre es requerido',
+
         ];
     }
 }

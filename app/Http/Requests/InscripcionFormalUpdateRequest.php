@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TrabajoUpdateRequest extends FormRequest
+class InscripcionFormalUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,16 @@ class TrabajoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_actividad => required',
-            'nombre_trabajo => required',
-            'org_nombre => required',
-            'tutor_nombre => required',
-            'numero_registro => required',
-            'fecha_inicio => required',
-            'fecha_termino => required',
-            'estado => required',
+            'numero_registro' => 'required|integer|min:1|max:3|unique:trabajos,numero_registro,'. $this->numero_registro,       
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'numero_registro.required' => 'El campo no puede que vacio',
+            'numero_registro.integer' => 'El campo debe ser un numero entero',
+
         ];
     }
 }
