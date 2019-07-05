@@ -41,6 +41,7 @@ class RegistrarExamenController extends Controller
         $trabajo->fecha_examen = $request->fecha_examen;
         $trabajo->estado = 'FINALIZADA';
         $trabajo->save();
-        return back()->with('info','Examen registrado con exito');
+        return redirect()->route('registrarExamen.index')
+            ->with('info','Examen registrado con exito');
     }
 }

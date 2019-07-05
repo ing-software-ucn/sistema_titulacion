@@ -18,13 +18,20 @@ class InscripcionFormalController extends Controller
         return view('trabajos.InscripcionFormal', compact('trabajos'));
 
     }
+    public function edit($id)
+    {
+        $trabajo = Trabajo::find($id);
+        return view('trabajos.edit3', compact('trabajo'));
+
+    }
     public function update(InscripcionFormalUpdateRequest $request, $id)
     {
         $trabajo = Trabajo::find($id);
 
         $trabajo->fill($request->all())->save();
 
-        return back()->with('info','Inscripcion Formal Completada');
+        return redirect()->route('inscripcionFormal.index')
+            ->with('info','Inscripcion Formal Completada');
 
     }
 }
