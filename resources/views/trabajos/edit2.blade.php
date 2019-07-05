@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<!-- Este es el edit de Examen de titulo -->
 @section('content')
 <div class="container">
     <div class="row">

@@ -18,7 +18,6 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Estado</th>
-                                <th>Numero registro curricular</th>
                                 <th colspan="6">&nbsp;</th> 
                             </tr>
                         </thead>
@@ -28,22 +27,11 @@
                                 <td> {{ $trabajo->nombre_trabajo}}</td>
                                 <td> {{ $trabajo->estado}}</td>
 
-                                    {!! Form::model($trabajo ,['route' => ['inscripcionFormal.update',$trabajo->id], 'method' => 'PUT']) !!}
-                                    <div class="container">
-                                        <td class="form-group" style="display: none">{{ Form::label('numero_registro','Numero registro')}}</td>
-
-                                        <td class="form-group" style="width: 200px">    
-                                            {{ Form::text('numero_registro',null,['class'=>'form-control']) }}
-                                        </td>
-                                        <td class="form-group">
-                                            {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary float-left']) }}
-                                        </td>
-                                        
-                                    </div>
-                                    {!! Form::close() !!}
-
-
-                                    
+                                <td width="10px">
+                                    <a href="{{ route('inscripcionFormal.edit',$trabajo->id) }}" class="btn btn-sm btn-default">
+                                        Registrar Numero
+                                    </a>
+                                </td>                                    
                                 
                             </tr>
                             @endforeach
