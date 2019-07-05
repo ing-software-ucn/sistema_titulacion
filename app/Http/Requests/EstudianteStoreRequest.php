@@ -25,13 +25,27 @@ class EstudianteStoreRequest extends FormRequest
     {
         return [
             
-            'nombre' => 'required|min:2|max:255',
-            'run' => 'required|max:255',
+            'nombre' => 'required|min:2|max:255|regex:/^[a-zA-Z ]+$/',
+            'run' => 'required|max:255|unique:estudiantes',
             'carrera' => 'required',
-            'telefono' => 'required|min:4|max:16',
+            'telefono' => 'required|min:4|integer|max:16',
             'correo' => 'required|unique:estudiantes,correo,'. $this->estudiante,
             
 
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nombre.regex' => 'El nombre no puede contener numeros o simbolos raros',
+            'nombre.required' => 'El nombre es requerido',
+            'run.unique' => 'El RUN ingresado ya existe',
+            'run.required' => 'El RUN es requerido',
+            'telefono.required' => 'El telefono es requierido',
+            'telefono.integer' => 'El telefono debe contener numeros',
+            'correo.required' => 'El correo es requerido',
+            'correo.unique' => 'El correo ingresado la existe',
         ];
     }
 }

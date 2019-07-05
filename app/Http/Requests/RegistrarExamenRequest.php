@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActividadUpdateRequest extends FormRequest
+class RegistrarExamenRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,22 +24,19 @@ class ActividadUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-    
-            'nombre_actividad' => 'required|min:2|max:255|regex:/^[a-zA-Z ]+$/',
-            'estudiantes_max'=> 'required', 
-            'duracion_semestres'=> 'required', 
-            'org_externa'=> 'required', 
+            'nota' => 'required||min:1|max:3',
+            'fecha_examen' => 'required|date|after:fecha_inicio',
             
         ];
     }
+
     public function messages()
     {
         return [
-            'nombre_actividad.regex' => 'El nombre no puede contener numeros o simbolos raros',
-            'nombre_actividad.required' => 'El nombre es requerido',
+            'nota.required' => 'La nota es requerida',
+            'fecha_examen.required' => 'La fecha es requerida',
+            'fecha_examen.after' => 'La fecha de examen debe ser despues de a fecha de inicio',
 
         ];
     }
-
-    
 }

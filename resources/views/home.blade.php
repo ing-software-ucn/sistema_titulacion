@@ -27,6 +27,28 @@
                                         Registro tipo Actividad
                                     </a>
                     </td>
+                    <td width="10px">
+                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol" style="background-color:#0844a4; padding: 100px 30px;font-size:30px;float:left;display:block">
+                                        Autorizar Actividad
+                                    </a>
+                    </td>
+                    <td width="10px">
+                                    <a href="{{ route('inscripcionFormal.index') }}" class="btn btn-sm btn-default hol " style="color:black; background-color:#a8c6fa; padding: 100px 30px;font-size:30px;float:left;display:block">
+                                        Inscripcion Formal
+                                    </a>
+                    </td>
+                    <td width="10px">
+                        
+                                    <a href="{{ route('registrarExamen.index') }}" class="btn btn-sm btn-default hol"style="background-color:#ff8351; padding: 100px 29px;font-size:30px;float:left; display:block">
+                                        Registrar Examen de Titulo
+                                    </a>
+                    </td>
+                    <td width="10px">
+                        
+                        <a href="{{ route('anularTrabajo.index') }}" class="btn btn-sm btn-default hol"style="background-color:#ff8351; padding: 100px 29px;font-size:30px;float:left; display:block">
+                            Anular trabajo
+                        </a>
+                    </td>
                         
                     @endif
 
@@ -40,6 +62,16 @@
                     <td width="10px">
                                     <a href="{{ route('actividades.index') }}" class="btn btn-sm btn-default hol"style="background-color:#ff8351; padding: 100px 29px;font-size:30px;float:left; display:block">
                                         Registro tipo Actividad
+                                    </a>
+                    </td>
+                    <td width="10px">
+                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol"style="background-color:#ff8351; padding: 100px 29px;font-size:30px;float:left; display:block">
+                                        Autorizar Actividad
+                                    </a>
+                    </td>
+                    <td width="10px">
+                                    <a href="{{ route('regExTitulo') }}" class="btn btn-sm btn-default hol"style="background-color:#ff8351; padding: 100px 29px;font-size:30px;float:left; display:block">
+                                        Registrar Examen de Titulo
                                     </a>
                     </td>
 

@@ -25,11 +25,23 @@ class AcademicoStoreRequest extends FormRequest
     {
         return [
             
-            'nombre' => 'required|min:2|max:255',
-            'run' => 'required|max:255',
+            'nombre' => 'required|min:2|max:255|regex:/^[a-zA-Z ]+$/',
+            'run' => 'required|max:255|unique:academicos',
             'correo' => 'required|unique:academicos,correo,'. $this->academico,
             
 
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nombre.regex' => 'El nombre no puede contener numeros o simbolos raros',
+            'nombre.required' => 'El nombre es requerido',
+            'run.unique' => 'El RUN ingresado ya existe',
+            'run.required' => 'El RUN es requerido',
+            'correo.required' => 'El correo es requerido',
+            'correo.unique' => 'El correo ingresado la existe',
         ];
     }
 }
