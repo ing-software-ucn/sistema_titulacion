@@ -7,6 +7,13 @@ use App\Trabajo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrabajoStoreRequest;
 use App\Http\Requests\TrabajoUpdateRequest;
+use App\Http\Requests\TrabajoExamenRequest;
+use Illuminate\Http\Request;
+
+use App\Estudiante;
+use App\Actividad;
+use App\Academico;
+
 
 class TrabajoController extends Controller
 {
@@ -27,8 +34,10 @@ class TrabajoController extends Controller
      */
     public function create()
     {
-
-
+        $actividades = Actividad::orderBy('nombre_actividad','DESC')
+            ->pluck('nombre_actividad','id');
+        $estudiantes = Estudiante::orderBy('nombre','run');
+        return view('trabajos.createTrabajo',compact('actividades'));
 
     }
 
@@ -75,11 +84,7 @@ class TrabajoController extends Controller
      */
     public function update(TrabajoUpdateRequest $request, $id)
     {
-        $trabajo = Trabajo::find($id);
-
-        $trabajo->fill($request->all())->save();
-
-        return back()->with('info','Inscripcion Formal Completada');
+        
     }
 
     /**
@@ -93,20 +98,31 @@ class TrabajoController extends Controller
 
     }
 
-    public function indexCurricular()
+    public function autorizartrabajo()
     {
         $trabajos = Trabajo::orderBy('id','DESC')
-            ->where('estado','ACEPTADA')
+            ->where('estado','INGRESADA')
             ->whereNull('numero_registro')
             ->paginate();
 
-        return view('trabajos.index', compact('trabajos'));
+        return view('trabajos.AutorizarTrabajo', compact('trabajos'));
     }
-    public function updateCurricular(TrabajoUpdateRequest $request, $id){
-        $trabajo = Trabajo::find($id);
 
+    
+
+    public function editComisionCorrectora(Request $request)
+    {
+        $trabajos =Trabajo::find($request->id);
+
+        return view('trabajos.edit', compact('trabajos'));
+    }
+
+    public function updateComisioncorrectora(TrabajoUpdateRequest $request, $id)
+    {
+        $trabajo = Trabajo::find($request->id); 
         $trabajo->fill($request->all())->save();
 
-        return back()->with('info','Inscripcion Formal Completada');
+        return back()->with('info','Comision correctora asignada');
     }
+
 }

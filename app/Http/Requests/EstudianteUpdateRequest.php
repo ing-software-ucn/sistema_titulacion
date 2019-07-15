@@ -25,11 +25,22 @@ class EstudianteUpdateRequest extends FormRequest
     {
         return [
             
-            'nombre' => 'required|min:2|max:255',
+            'nombre' => 'required|min:2|max:255|regex:/^[a-zA-Z ]+$/',
             'run' => 'required|max:255',
             'carrera' => 'required',
             'telefono' => 'required|min:4|max:16',
             'correo' => 'required|unique:estudiantes,correo,'. $this->estudiante,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nombre.regex' => 'El nombre no puede contener numeros o simbolos raros',
+            'nombre.required' => 'El nombre es requerido',
+            'telefono.required' => 'El telefono es requierido',
+            'correo.required' => 'El correo es requerido',
+            'correo.unique' => 'El correo ingresado la existe',
         ];
     }
 }

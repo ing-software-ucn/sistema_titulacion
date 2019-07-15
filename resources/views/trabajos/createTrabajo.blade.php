@@ -6,13 +6,13 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Editar Estudiante
+                    Nuevo trabajo de titulacion
 
                 </div>
             
-                <div class="panel-body">
-                    {!! Form::model($estudiante, ['route' => ['estudiantes.update',$estudiante->id], 'method' => 'PUT']) !!}
-                        @include('estudiantes.form2')
+                <div class="card-body">
+                    {!! Form::open(['route' => 'trabajos.create']) !!}
+                        @include('trabajos.partials.form_newTrabajo')
                     {!! Form::close() !!}
                 </div>
             </div>

@@ -21,12 +21,23 @@ Auth::routes();
 
 
 
-
+//Rutas de Vistas
 Route::resource('estudiantes','EstudianteController');
 Route::resource('academicos','AcademicoController');
 Route::resource('actividades','ActividadController');
+Route::resource('home', 'HomeController');
+Route::resource('registrarExamen','RegistrarExamenController');
+Route::resource('anularTrabajo','AnularController');
+Route::resource('inscripcionFormal','InscripcionFormalController');
+Route::get('home', 'HomeController@index')->name('home');
+route::get('nuevoTrabajo', 'TrabajoController@create')->name('nuevoTrabajo');
+Route::get('autorizar', 'TrabajoController@autorizartrabajo')->name('Autorizar');
+//Rutas de Funciones de controladores
+Route::get('correctcom', 'TrabajoController@editComisionCorrectora')->name('correctcom');
+
+Route::get('trabajos/updateExamenTitulo', 'TrabajoController@updateExamenTitulo')->name('trabajos.updateExamenTitulo');
+route::get('trabajos/regExTitulo', 'TrabajoController@regExTitulo')->name('trabajos.regExTitulo');
+Route::get('trabajos/editExamenTitulo', 'TrabajoController@editExamenTitulo')->name('trabajos.editExamenTitulo');
 Route::resource('trabajos','TrabajoController');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/curricular', 'TrabajoController@indexCurricular')->name('curricular');
 

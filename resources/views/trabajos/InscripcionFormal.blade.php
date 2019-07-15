@@ -27,18 +27,11 @@
                                 <td> {{ $trabajo->nombre_trabajo}}</td>
                                 <td> {{ $trabajo->estado}}</td>
 
-                                    {!! Form::model($trabajo, ['route' => ['trabajos.update',$trabajo->id], 'method' => 'PUT']) !!}
-                                    <div class="container">
-
-                                        <td>
-                            
-                                            {{ Form::text('numero_registro',null)}}
-
-                                        </td>
-
-                                        <td>{{ Form::submit('Registrar Numero', ['class' => 'btn btn-sm btn-primary float-left']) }}</td>
-                                    </div>
-                                    {!! Form::close() !!}
+                                <td width="10px">
+                                    <a href="{{ route('inscripcionFormal.edit',$trabajo->id) }}" class="btn btn-sm btn-default">
+                                        Registrar Numero
+                                    </a>
+                                </td>                                    
                                 
                             </tr>
                             @endforeach

@@ -1,18 +1,17 @@
 @extends('layouts.app')
-
+<!-- Este es el edit de Autorizar Trabajo -->
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Editar Estudiante
-
+                    Comision Correctora
                 </div>
             
                 <div class="panel-body">
-                    {!! Form::model($estudiante, ['route' => ['estudiantes.update',$estudiante->id], 'method' => 'PUT']) !!}
-                        @include('estudiantes.form2')
+                    {!! Form::model($trabajos, ['route' => ['correctcom'], 'method' => 'PUT']) !!}
+                        @include('trabajos.form')
                     {!! Form::close() !!}
                 </div>
             </div>
