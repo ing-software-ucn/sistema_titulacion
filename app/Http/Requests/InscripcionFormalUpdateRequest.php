@@ -24,7 +24,7 @@ class InscripcionFormalUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_registro' => 'required|integer|min:1|max:3|unique:trabajos,numero_registro,'. $this->numero_registro,       
+            'numero_registro' => 'required|integer|min:100|max:999|unique:trabajos,numero_registro,'. $this->numero_registro,       
         ];
     }
 
@@ -33,6 +33,8 @@ class InscripcionFormalUpdateRequest extends FormRequest
         return [
             'numero_registro.required' => 'El campo no puede que vacio',
             'numero_registro.integer' => 'El campo debe ser un numero entero',
+            'numero_registro.min' => 'El numero debe ser entre 100 y 999',
+            'numero_registro.max' => 'El numero debe ser entre 100 y 999',
 
         ];
     }
