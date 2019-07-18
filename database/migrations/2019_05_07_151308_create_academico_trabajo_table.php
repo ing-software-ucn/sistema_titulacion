@@ -15,13 +15,13 @@ class CreateAcademicoTrabajoTable extends Migration
     {
         Schema::create('academico_trabajo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_trabajo')->unsigned();
-            $table->integer('id_academico')->unsigned();
+            $table->integer('trabajo_id')->unsigned();
+            $table->integer('academico_id')->unsigned();
             $table->enum('tipo',['GUIA','CORRECTOR'])->default('CORRECTOR');
             $table->timestamps();
 
-            $table->foreign('id_trabajo')->references('id')->on('trabajos');
-            $table->foreign('id_academico')->references('id')->on('academicos');
+            $table->foreign('trabajo_id')->references('id')->on('trabajos');
+            $table->foreign('academico_id')->references('id')->on('academicos');
 
 
         });

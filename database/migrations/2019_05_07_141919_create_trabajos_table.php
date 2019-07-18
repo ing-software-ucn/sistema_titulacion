@@ -22,7 +22,10 @@ class CreateTrabajosTable extends Migration
             $table->integer('numero_registro')->nullable();
             $table->double('nota')->unsigned()->nullable();
             $table->date('fecha_inicio');
+            $table->date('fecha_termino');
             $table->date('fecha_examen')->nullable();
+            $table->integer('año');
+            $table->enum('semestre',['PRIMERO','SEGUNDO'])->default('PRIMERO');
             $table->enum('estado',['INGRESADA','ACEPTADA','FINALIZADA','ANULADA'])->default('INGRESADA');
             
             $table->timestamps();
@@ -40,4 +43,5 @@ class CreateTrabajosTable extends Migration
     {
         Schema::dropIfExists('trabajos');
     }
+
 }

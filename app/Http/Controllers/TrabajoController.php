@@ -7,8 +7,10 @@ use App\Trabajo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TrabajoStoreRequest;
 use App\Http\Requests\TrabajoUpdateRequest;
-use App\Http\Requests\TrabajoExamenRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 use App\Estudiante;
 use App\Actividad;
@@ -24,7 +26,9 @@ class TrabajoController extends Controller
      */
     public function index()
     {
-        
+        $trabajos = Trabajo::orderBy('id','DESC')->get();
+        // retorna la vista y un Array 
+        return view('trabajos.index',compact('trabajos'));
     }
 
     /**
@@ -34,10 +38,10 @@ class TrabajoController extends Controller
      */
     public function create()
     {
-        $actividades = Actividad::orderBy('nombre_actividad','DESC')
-            ->pluck('nombre_actividad','id');
-        $estudiantes = Estudiante::orderBy('nombre','run');
-        return view('trabajos.createTrabajo',compact('actividades'));
+        $actividades = Actividad::orderBy('id','ASC')->get();
+        $estudiantes = Estudiante::orderBy('id','ASC')->get();
+        $academicos = Academico::orderBy('id','ASC')->get();
+        return view('trabajos.createTrabajo',compact('actividades','estudiantes','academicos'));
 
     }
 
@@ -49,8 +53,71 @@ class TrabajoController extends Controller
      */
     public function store(TrabajoStoreRequest $request)
     {
+        if($request->fecha_inicio > $request->fecha_termino){
+            return back()->with('error','Fecha de termino debe ser despues de la fecha de inicio ');
+        }
+        $id_actividad = $request->actividad_id;
+        $nombre_trabajo = $request->title;
+        $org_nombre = $request->name_ext_org;
+        $tutor_nombre = $request->tutor_ext_org;
+        $estado = "INGRESADA";
 
+        $academicos = $request->academicos;
+        $estudiantes = $request->estudiantes;
+
+        $año = date("Y",strtotime($request->fecha_inicio));
+        $mes = date("m",strtotime($request->fecha_inicio));
+
+        if($mes > 7){
+            $semestre = "SEGUNDO";
+        }else{
+            $semestre = "PRIMERO";
+        }
+
+        $trabajo = Trabajo::create(['id_actividad' => $id_actividad, 
+                        'nombre_trabajo' => $nombre_trabajo, 
+                        'org_nombre' => $org_nombre, 
+                        'tutor_nombre' => $tutor_nombre, 
+                        'fecha_inicio' => $request->fecha_inicio,
+                        'fecha_termino' => $request->fecha_termino,
+                        'año' => $año,
+                        'semestre' => $semestre, 
+                        'estado' => $estado,
+                        ]);
         
+        foreach($academicos as $academico){
+            $trabajo->agregarAcademico()->attach($academico);
+
+            DB::table('academico_trabajo')
+                ->where('trabajo_id',$trabajo->id)
+                ->update(['tipo'=>'GUIA']);
+            
+            $trabajo->save();
+        }
+
+        foreach($estudiantes as $estudiante){
+            $trabajo->agregarEstudiante()->attach($estudiante);
+            $trabajo->save();
+
+
+            $tabla1 = DB::table('estudiante_trabajo')->get();
+            foreach ($tabla1 as $fila1) {
+                if($fila1->estudiante_id == $estudiante && $fila1->trabajo_id != $trabajo->id ){
+                    $tabla2 = DB::table('trabajos')->get();
+                    foreach ($tabla2 as $fila2){
+                        if(($fila2->estado == 'INGRESADA' || $fila2->estado == 'ACEPTADA') && $fila2->id != $trabajo->id ){
+                            DB::table('trabajos')
+                                ->where('id', $fila2->id)
+                                ->update(['estado' => 'ANULADA']);
+                        }
+                    }
+
+                }
+            };
+        }
+
+        return redirect()->route('trabajos.create')->with('info','Trabajo creado con éxito');
+           
     }
 
     /**
@@ -61,7 +128,57 @@ class TrabajoController extends Controller
      */
     public function show($id)
     { //
+        $trabajo = Trabajo::find($id);
+        $actividad = DB::table('actividads')->where('id',$trabajo->id_actividad)->get();
 
+        $estudiantes = collect([]);
+        $academicos_guia = collect([]);
+        $academicos_corrector = collect([]);
+
+        //Buscamos todos los estudiantes
+        $tabla1 = DB::table('estudiante_trabajo')->get();
+        foreach ($tabla1 as $fila1) {
+            if($fila1->trabajo_id == $trabajo->id ){
+                $tabla2 = DB::table('estudiantes')->get();
+                foreach ($tabla2 as $fila2){
+                    if($fila2->id == $fila1->estudiante_id){
+                        $estudiantes->push($fila2);
+                        $estudiantes->all();
+                    }
+                }
+
+            }
+        };
+
+        $tabla3 = DB::table('academico_trabajo')->get();
+        foreach ($tabla3 as $fila3) {
+            if($fila3->trabajo_id == $trabajo->id && $fila3->tipo == 'GUIA' ){
+                $tabla4 = DB::table('academicos')->get();
+                foreach ($tabla4 as $fila4){
+                    if($fila4->id == $fila3->academico_id){
+                        $academicos_guia->push($fila4);
+                        $academicos_guia->all();
+                    }
+                }
+
+            }
+        };
+        $tabla5 = DB::table('academico_trabajo')->get();
+        foreach ($tabla5 as $fila5) {
+            if($fila5->trabajo_id == $trabajo->id && $fila3->tipo == 'CORRECTOR' ){
+                $tabla6 = DB::table('academicos')->get();
+                foreach ($tabla6 as $fila6){
+                    if($fila6->id == $fila5->academico_id){
+                        $academicos_corrector->push($fila4);
+                        $academicos_corrector->all();
+                    }
+                }
+
+            }
+        };
+
+  
+        return view('trabajos.show',compact('trabajo','actividad','estudiantes','academicos_guia','academicos_corrector'));
     }
 
     /**
