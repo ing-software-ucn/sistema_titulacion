@@ -28,10 +28,8 @@
                                     </a>
                     </td>
                     <td width="10px">
-                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol" style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px;display:block">
-                                        Autorizar Actividad
-                                    </a>
-                    </td>
+
+                    
                     <td width="10px">
                                     <a href="{{ route('inscripcionFormal.index') }}" class="btn btn-sm btn-default hol " style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px;display:block">
                                         Inscripcion Formal

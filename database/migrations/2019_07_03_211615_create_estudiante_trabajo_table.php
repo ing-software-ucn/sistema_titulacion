@@ -16,12 +16,12 @@ class CreateEstudianteTrabajoTable extends Migration
         Schema::create('estudiante_trabajo', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('id_trabajo')->unsigned();
-            $table->integer('id_estudiante')->unsigned();
+            $table->integer('trabajo_id')->unsigned();
+            $table->integer('estudiante_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_trabajo')->references('id')->on('trabajos');
-            $table->foreign('id_estudiante')->references('id')->on('estudiantes');
+            $table->foreign('trabajo_id')->references('id')->on('trabajos');
+            $table->foreign('estudiante_id')->references('id')->on('estudiantes');
         });
     }
 
