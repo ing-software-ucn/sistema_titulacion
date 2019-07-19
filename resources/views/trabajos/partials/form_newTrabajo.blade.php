@@ -44,7 +44,7 @@
     </div>
     
         <div class="table-responsive-sm "> <!--no estoy seguro si dice "is" o "sm"-->
-            <strong>{{form::label('array_estudiantes', 'Seleccione les Estudiante(s) ')}}</strong> <br>
+            <strong>{{form::label('array_estudiantes', 'Seleccione los Estudiante(s) ')}}</strong> <br>
         <div class="btn-group btn-sm" role="group" aria-label="Basic example">
 
             <input class="form-control" type="text" size="25"

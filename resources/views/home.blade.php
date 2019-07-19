@@ -31,9 +31,7 @@
                                     <a href="{{ route('trabajos.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px ;display:block">
                                         Registro Trabajos
                                     </a>
-                    </td>
-
-                    
+                    </td>                    
 
                     <td width="10px">
                                     <a href="{{ route('autorizar.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px ;display:block">
@@ -86,7 +84,7 @@
                     <td width="10px">
 
                     <td width="10px">
-                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
+                                    <a href="{{ route('autorizar.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
                                         Autorizar Actividad de Titulacion
                                     </a>
                     </td>
