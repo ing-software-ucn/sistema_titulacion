@@ -15,8 +15,8 @@
                         @include('trabajos.partials.form_newTrabajo')
                     {!! Form::close() !!}
 
-                    <label class="col-md-0">
-                       <a href="{{ route( 'trabajos.index' ) }}" class="btn btn-sm btn-primary float-right">Atras</a>
+                    <label class="col-md">
+                       <a href="{{ route( 'trabajos.index' ) }}" class="btn btn-sm btn-primary float-left">Atras</a>
                     </label>
                 </div>
             </div>

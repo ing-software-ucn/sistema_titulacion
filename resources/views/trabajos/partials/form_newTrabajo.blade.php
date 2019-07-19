@@ -40,7 +40,7 @@
 
 <div class="form-group">
     <div>
-        <span id="notvalid" style="color:red"></span>
+        <strong><span id="notvalid" style="color:red"></span></strong>
     </div>
     
         <div class="table-responsive-sm "> <!--no estoy seguro si dice "is" o "sm"-->
@@ -156,9 +156,7 @@
 
 <!-- Enviar FORM -->
 <div class="form-group text-center">
-    {{
-      Form::submit('Crear Trabajo',['class'=>'btn btn-success'])
-    }}
+    {{ Form::submit('Crear Trabajo',['class'=>'btn btn-success']) }}
 </div>
 
 
