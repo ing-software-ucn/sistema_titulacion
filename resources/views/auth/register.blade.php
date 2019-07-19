@@ -47,13 +47,7 @@
                                     </label>
                                     <label class="col-md-6">
                                         {{ Form::radio('rol', 'Titulacion') }} Titulacion
-                                    </label>
-                                    <label class="col-md-6">
-                                        {{ Form::radio('rol', 'Vinculacion') }} Vinculacion
-                                    </label>
-                                    <label class="col-md-6">
-                                        {{ Form::radio('rol', 'Academico') }} Academico
-                                    </label>
+                                    </label>                                    
                                 </div>
                         </div>
 
