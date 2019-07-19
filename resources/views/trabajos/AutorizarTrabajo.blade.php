@@ -11,13 +11,7 @@
                     <!--ACA PUEDE IR EL BUSCADOR -->
                     
                 </div>
-                <td>
-                    <div class="col-md-4">
-                        {{ Form::label('run','Busqueda por Rut de alumno','')}}
-                    </div>                            
-                        {{ Form::text('run',null)}}
 
-                    </td>
 
                 <div class="panel-body">
                     <table class="table table-striped table-hover">
@@ -35,7 +29,7 @@
                                 <td> {{ $trabajo->estado}}</td>
 
                                 <td width="10px">
-                                    <a href="{{ route('correctcom') }}" class="btn btn-sm btn-default">
+                                    <a href="{{ route('autorizar.edit',$trabajo->id) }}" class="btn btn-sm btn-default">
                                         Ingresar comision correctora
                                     </a>
                                 </td>

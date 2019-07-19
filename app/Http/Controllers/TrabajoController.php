@@ -165,11 +165,11 @@ class TrabajoController extends Controller
         };
         $tabla5 = DB::table('academico_trabajo')->get();
         foreach ($tabla5 as $fila5) {
-            if($fila5->trabajo_id == $trabajo->id && $fila3->tipo == 'CORRECTOR' ){
+            if($fila5->trabajo_id == $trabajo->id && $fila5->tipo == 'CORRECTOR' ){
                 $tabla6 = DB::table('academicos')->get();
                 foreach ($tabla6 as $fila6){
                     if($fila6->id == $fila5->academico_id){
-                        $academicos_corrector->push($fila4);
+                        $academicos_corrector->push($fila6);
                         $academicos_corrector->all();
                     }
                 }

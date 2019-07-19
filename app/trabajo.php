@@ -15,7 +15,8 @@ class trabajo extends Model
     public function agregarAcademico(){
 
         return $this->belongsToMany('App\academico')
-            ->withPivot('tipo');
+            ->withPivot('tipo')
+            ->withTimestamps();
     }
 
     public function agregarEstudiante(){

@@ -29,9 +29,9 @@ Route::resource('home', 'HomeController');
 Route::resource('registrarExamen','RegistrarExamenController');
 Route::resource('anularTrabajo','AnularController');
 Route::resource('inscripcionFormal','InscripcionFormalController');
+Route::resource('autorizar','AutorizarController');
 Route::get('home', 'HomeController@index')->name('home');
-route::get('nuevoTrabajo', 'TrabajoController@create')->name('nuevoTrabajo');
-Route::get('autorizar', 'AutorizarController@index')->name('Autorizar');
+
 //Rutas de Funciones de controladores
 Route::get('correctcom', 'TrabajoController@editComisionCorrectora')->name('correctcom');
 

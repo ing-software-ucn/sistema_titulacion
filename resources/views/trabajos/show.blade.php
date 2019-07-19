@@ -44,7 +44,7 @@
                     @endforeach
 
                     @foreach($academicos_corrector as $corrector)
-                        <p><strong>Corrector: </strong>{{$corrector->nombre}}</p>
+                        <p><strong>Academico corrector: </strong>{{$corrector->nombre}}</p>
                     @endforeach
 
 
