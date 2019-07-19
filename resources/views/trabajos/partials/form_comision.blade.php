@@ -1,10 +1,10 @@
 <!--Este form permite crear la comisión correctora -->
 {{Form::hidden('max',$max)}}
 <div hidden id= "alert" class= "alert alert-danger">
-    <p>"¡No puede seleccionar dos veces el mismo académico!"</p>
+    <p>"¡El academico ya fue seleccionado!"</p>
 </div>
 <div>
-        La comisión correctora actualmente está constituida por:<br>
+        La comision esta formada por:<br>
         Profesores guias:
     @foreach ($guias as $guia)
         <br>{{$guia->nombre}}
@@ -12,17 +12,17 @@
 </div>
 
 <br>
-Puede agregar {{$max}} miembros más a la comisión:
+Aun falta agregar {{$max}} profesores a la comisión:
 <br>
 @for ($i=0; $i < $max; $i++)
     <div class = "form-group">
-    {{ Form::label('nombre'.$i,'Académico:')}}
+    {{ Form::label('nombre'.$i,'Profesor '.($i+1))}}
     {{ Form::select('nombre'.$i,$academicos->pluck('nombre','id'), null, ['class'=>'form-control','id' =>'nombre'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
     </div>
 @endfor
 
 <div class="form-group text-center">
-  {{ Form::submit('Registrar Miembros',['class'=>'btn btn-success']) }}
+  {{ Form::submit('Registrar Comision',['class'=>'btn btn-success']) }}
 </div>
 
 <script>
