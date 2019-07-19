@@ -29,18 +29,26 @@
                     </td>
                     <td width="10px">
 
-                    
+                    <td width="10px">
+                                    <a href="{{ route('trabajos.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px ;display:block">
+                                        Inscribir Actividad de Titulacion
+                                    </a>
+                    </td>
+                    <td width="10px">
+                                     
                     <td width="10px">
                                     <a href="{{ route('inscripcionFormal.index') }}" class="btn btn-sm btn-default hol " style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px;display:block">
                                         Inscripcion Formal
                                     </a>
                     </td>
+
                     <td width="10px">
                         
                                     <a href="{{ route('registrarExamen.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px ;display:block">
                                         Registrar Examen de Titulo
                                     </a>
                     </td>
+
                     <td width="10px">
                         
                         <a href="{{ route('anularTrabajo.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
@@ -58,34 +66,7 @@
                     </td>
 
                     <td width="10px">
-                                    <a href="{{ route('actividades.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
-                                        Registro tipo Actividad
-                                    </a>
-                    </td>
-                    <td width="10px">
-                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
-                                        Autorizar Actividad
-                                    </a>
-                    </td>
-                    <td width="10px">
-                                    <a href="{{ route('registrarExamen.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
-                                        Registrar Examen de Titulo
-                                    </a>
-                    </td>
-
-
-                    @endif
-
-                    @if(Auth::user()->rol == 'ACADEMICO')
-                        
-                        
-
-                    @endif
-
-                    @if(Auth::user()->rol == 'VINCULACION')
-                        
-                    <td width="10px">
-                                    <a href="{{ route('academicos.index') }}" class="btn btn-sm btn-default hol " style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
+                                    <a href="{{ route('academicos.index') }}" class="btn btn-sm btn-default hol " style="background-color:#F3FAFB  ;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px;display:block">
                                         Registro academicos
                                     </a>
                     </td>
@@ -94,9 +75,42 @@
                                     <a href="{{ route('actividades.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
                                         Registro tipo Actividad
                                     </a>
-                    </td>    
+                    </td>
 
-                    @endif
+                    <td width="10px">
+                                    <a href="{{ route('trabajos.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px ;display:block">
+                                        Inscribir Actividad de Titulacion
+                                    </a>
+                    </td>
+                    <td width="10px">
+
+                    <td width="10px">
+                                    <a href="{{ route('Autorizar') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
+                                        Autorizar Actividad de Titulacion
+                                    </a>
+                    </td>
+
+                    <td width="10px">
+                                    <a href="{{ route('inscripcionFormal.index') }}" class="btn btn-sm btn-default hol " style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px;display:block">
+                                        Inscripcion Formal
+                                    </a>
+                    </td>
+
+                    <td width="10px">
+                                    <a href="{{ route('registrarExamen.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
+                                        Registrar Examen de Titulo
+                                    </a>
+                    </td>
+
+                    <td width="10px">
+                        
+                        <a href="{{ route('anularTrabajo.index') }}" class="btn btn-sm btn-default hol"style="background-color:#F3FAFB;color: black; padding: 15px 15px;font-size:20px;position: relative; left: 200px; display:block">
+                            Anular trabajo
+                        </a>
+                    </td>
+
+
+                    @endif               
 
                 </div>
             </div>
