@@ -54,10 +54,21 @@
 
 
 
-
+                    @if($trabajo->estado =='ACEPTADA')
+                    <label class="col-md-0">
+                       <a href="{{ route( 'autorizar.index' ) }}" class="btn btn-sm btn-primary float-right">Atras</a>
+                    </label>
+                    @endif
+                    @if($trabajo->estado =='INGRESADA')
                     <label class="col-md-0">
                        <a href="{{ route( 'trabajos.index' ) }}" class="btn btn-sm btn-primary float-right">Atras</a>
                     </label>
+                    @endif
+                    @if($trabajo->estado =='ANULADA')
+                    <label class="col-md-0">
+                       <a href="{{ route( 'trabajos.index' ) }}" class="btn btn-sm btn-primary float-right">Atras</a>
+                    </label>
+                    @endif
                 </div>
 
             </div>

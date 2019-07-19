@@ -8,6 +8,7 @@ use App\Academico;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AutorizarUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -39,6 +40,16 @@ class AutorizarController extends Controller
         //dd($request);
         $max = $request->max;
         $trabajo = Trabajo::find($id);
+
+        if($trabajo->estado == 'ACEPTADA'){
+            DB::table('academico_trabajo')
+            ->where('trabajo_id', $trabajo->id)
+            ->where('tipo', 'CORRECTOR')
+            ->delete();
+        }
+
+
+
         $comisionId;
         for ($i=0; $i <$max ; $i++) {
             $comisionId[$i] = $request->all()['nombre'.$i];
@@ -52,6 +63,9 @@ class AutorizarController extends Controller
         $trabajo->estado = 'ACEPTADA';
         $trabajo->save();
         
+        if($trabajo->estado == 'ACEPTADA'){
+            return  redirect()->route('autorizar.index')->with('info','Comision editada correctamente');
+        }
         return  redirect()->route('autorizar.index')->with('info','Trabajo autorizado correctamente');
 
     }

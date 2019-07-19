@@ -3,21 +3,20 @@
 <div hidden id= "alert" class= "alert alert-danger">
     <p>"¡No puede seleccionar dos veces el mismo académico!"</p>
 </div>
-<div>
-        La comisión correctora actualmente está constituida por:<br>
-        Profesores guias:
+<div><br>
+        Profesores guias de la comisión:
     @foreach ($guias as $guia)
-        <br>{{$guia->nombre}}
+        <br><strong>{{$guia->nombre}}</strong>
     @endforeach
 </div>
 
 <br>
-Puede agregar {{$max}} miembros más a la comisión:
+Ingrese maximo {{$max}} academicos correctores:
 <br>
 @for ($i=0; $i < $max; $i++)
-    <div class = "form-group">
+    <div class = "form-group text-center" style="width: 260px">
     {{ Form::label('nombre'.$i,'Académico:')}}
-    {{ Form::select('nombre'.$i,$academicos->pluck('nombre','id'), null, ['class'=>'form-control','id' =>'nombre'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
+    {{ Form::select('nombre'.$i,$academicos->pluck('nombre','id'), null, ['class'=>'form-control text-center','id' =>'nombre'.$i,'onChange'=>'isUnique(this)','placeholder'=>'Seleccione un académico...']) }}
     </div>
 @endfor
 

@@ -29,9 +29,29 @@
                                 <td> {{ $trabajo->estado}}</td>
 
                                 <td width="10px">
+                                    <a href="{{ route('trabajos.show', $trabajo->id) }}" class="btn btn-sm btn-default">
+                                        Ver
+                                    </a>
+                                </td>
+
+                                @if($trabajo->estado == 'INGRESADA')
+                                <td width="10px">
                                     <a href="{{ route('autorizar.edit',$trabajo->id) }}" class="btn btn-sm btn-default">
                                         Ingresar comision correctora
-                                    </a>
+                                </td>
+                                @endif
+                                @if($trabajo->estado == 'ACEPTADA')
+                                <td width="10px">
+                                    <a href="{{ route('autorizar.edit',$trabajo->id) }}" class="btn btn-sm btn-default">
+                                        Editar comision correctora
+                                </td>
+                                @endif
+                                <td width="10px">
+                                    {!! Form::model($trabajo ,['route' => ['anularTrabajo.update',$trabajo->id],'method' => 'PUT'] ) !!}
+                                        <button class="btn btn-sm btn-danger" onclick="return confirm('¿Segure desea Anular?')">
+                                            Anular
+                                        </button>
+                                    {!! Form::close() !!}
                                 </td>
                                 
                             </tr>
