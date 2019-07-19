@@ -18,13 +18,13 @@
                     <p><strong>Fecha de inicio</strong> {{ $trabajo->fecha_inicio }}</p>
                     <p><strong>Fecha de termino</strong> {{ $trabajo-> fecha_termino}}</p>
 
-                    @foreach($actividad as $act)
-                        <p><strong>Tipo De Actividad: </strong>{{$act->nombre_actividad}}</p>
-                        @if($act->org_externa == 'SI')
-                            <p><strong>Organización nombre: </strong>{{$trabajo->org_nombre}}</p>
-                            <p><strong>Organización tutor: </strong>{{$trabajo->tutor_nombre}}</p>
-                        @endif
-                    @endforeach
+                   
+                    <p><strong>Tipo De Actividad: </strong>{{$actividad->nombre_actividad}}</p>
+                    @if($actividad->org_externa == 'SI')
+                        <p><strong>Organización nombre: </strong>{{$trabajo->org_nombre}}</p>
+                        <p><strong>Organización tutor: </strong>{{$trabajo->tutor_nombre}}</p>
+                    @endif
+                  
 
                     @if($trabajo->numero_registro != NULL)
                         <p><strong>Codigo Curricular: </strong>{{$trabajo->numero_registro}}</p>

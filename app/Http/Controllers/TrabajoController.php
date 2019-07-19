@@ -129,7 +129,7 @@ class TrabajoController extends Controller
     public function show($id)
     { //
         $trabajo = Trabajo::find($id);
-        $actividad = DB::table('actividads')->where('id',$trabajo->id_actividad)->get();
+        $actividad = Actividad::find($trabajo->id_actividad);
 
         $estudiantes = collect([]);
         $academicos_guia = collect([]);
